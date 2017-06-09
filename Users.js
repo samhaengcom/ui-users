@@ -276,6 +276,7 @@ class Users extends React.Component {
       },
       'User ID': user => user.username,
       Email: user => _.get(user, ['personal', 'email']),
+      'Index': user => user.rowIndex,
     };
 
     const detailsPane = (
@@ -298,6 +299,8 @@ class Users extends React.Component {
           <h2>Permission Error</h2>
           <p>Sorry - your user permissions do not allow access to this page.</p>
         </div>));
+
+    const cw = {'Active':'10%', 'Name':'20%', 'Patron Group':'20%', 'User ID': '20%', 'Email':'30%'};
 
     return (
       <Paneset>
@@ -335,10 +338,11 @@ class Users extends React.Component {
             onRowClick={this.onSelectRow}
             onHeaderClick={this.onSort}
             onNeedMoreData={this.onNeedMore}
-            visibleColumns={['Active', 'Name', 'Patron Group', 'User ID', 'Email']}
+            visibleColumns={['Index', 'Active', 'Name', 'Patron Group', 'User ID', 'Email']}
             sortOrder={this.state.sortOrder}
             isEmptyMessage={`No results found for "${this.state.searchTerm}". Please check your spelling and filters.`}
             columnMapping={{ 'User ID': 'username' }}
+            columnWidths={{cw}}
             loading={this.props.resources.users ? this.props.resources.users.isPending : false}
             autosize
             virtualize
