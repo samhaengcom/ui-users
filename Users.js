@@ -155,7 +155,7 @@ class Users extends React.Component {
     }
 
     this.state = {
-      filters: initialFilterState(filterConfig, query.filters),
+      filters: initialFilterState(filterConfig, this.props.filters ? this.props.filters : query.filters),
       selectedItem: initiallySelected,
       searchTerm: query.query || '',
       sortOrder: query.sort || '',
