@@ -19,22 +19,22 @@ class PatronGroupsSettings extends React.Component {
   }
 
   render() {
+    const groupInfoFormatter = {
+      'last updated': (item) => <this.connectedPatronGroupLastUpdated item={item} gloss="last updated" {...this.props} />,
+      '# of users': (item) => <this.connectedPatronGroupNumberOfUsers item={item} gloss="# of users" {...this.props} />,
+    }
+
     return (
       <this.connectedControlledVocab
         {...this.props}
         baseUrl="groups"
         records="usergroups"
         label="Patron Groups"
-        visibleFields={['group', 'desc']}
+        visibleFields={['group', 'desc', 'last updated', '# of users']}
+        readOnlyFields={['last updated', '# of users']}
         itemTemplate={{ group: 'string', id: 'string', desc: 'string' }}
         nameKey="group"
-        additionalFields={[ {
-          component: this.connectedPatronGroupLastUpdated,
-          gloss: "Last Updated",
-        }, {
-          component: this.connectedPatronGroupNumberOfUsers,
-          gloss: "# of Users",
-        }]}
+        formatter={groupInfoFormatter}
       />
     );
   }
