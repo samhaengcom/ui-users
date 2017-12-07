@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import transitionToParams from '@folio/stripes-components/util/transitionToParams';
 import Pane from '@folio/stripes-components/lib/Pane';
-import PaneMenu from '@folio/stripes-components/lib/PaneMenu';
+import PaneMenu, { PaneMenuIcon } from '@folio/stripes-components/lib/PaneMenu';
 import { Row, Col } from '@folio/stripes-components/lib/LayoutGrid';
 import Icon from '@folio/stripes-components/lib/Icon';
 import Layer from '@folio/stripes-components/lib/Layer';
@@ -305,9 +305,9 @@ class ViewUser extends React.Component {
     const proxies = this.props.getProxies();
 
     const detailMenu = (<PaneMenu>
-      <button id="clickable-show-notes" style={{ visibility: !user ? 'hidden' : 'visible' }} onClick={this.props.notesToggle} title="Show Notes"><Icon icon="comment" />Notes</button>
+      <PaneMenuIcon id="clickable-show-notes" style={{ visibility: !user ? 'hidden' : 'visible' }} onClick={this.props.notesToggle} title="Show Notes" icon="comment" />
       <IfPermission perm="users.item.put">
-        <button id="clickable-edituser" style={{ visibility: !user ? 'hidden' : 'visible' }} onClick={this.props.onEdit} title="Edit User"><Icon icon="edit" />Edit</button>
+        <PaneMenuIcon id="clickable-edituser" style={{ visibility: !user ? 'hidden' : 'visible' }} onClick={this.props.onEdit} title="Edit User" icon="edit" />
       </IfPermission>
     </PaneMenu>);
 
