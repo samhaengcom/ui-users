@@ -1,24 +1,15 @@
 import _ from 'lodash';
 import React from 'react';
-import loanActionMap from './data/loanActionMap';
+import { FormattedDate, FormattedTime } from 'react-intl';
 
-export function formatDate(dateStr, locale) {
+export function formatDate(dateStr) {
   if (!dateStr) return dateStr;
-  return new Date(Date.parse(dateStr)).toLocaleDateString(locale);
+  return (<FormattedDate value={dateStr} />);
 }
 
-export function formatDateTime(dateStr, locale) {
+export function formatDateTime(dateStr) {
   if (!dateStr) return dateStr;
-  return new Date(Date.parse(dateStr))
-    .toLocaleString(locale, { hour: '2-digit', minute: '2-digit' })
-    .toLowerCase();
-}
-
-export function futureDate(dateStr, locale, days) {
-  if (!dateStr) return dateStr;
-  const date = new Date(Date.parse(dateStr));
-  date.setDate(date.getDate() + days);
-  return date.toLocaleDateString(locale);
+  return (<span><FormattedDate value={dateStr} /> <FormattedTime value={dateStr} /></span>);
 }
 
 export function getFullName(user) {
@@ -46,13 +37,9 @@ export function getAnchoredRowFormatter(row) {
     </a>
   );
 }
+
 export function isSubstringsInString(listSubStrings, testString) {
   return new RegExp(listSubStrings.join('|')).test(testString);
-}
-export function getItemStatusFormatter(loan) {
-  return isSubstringsInString(['renewed', 'recalled', 'requested'], loan.action) ?
-    `${_.get(loan, ['item', 'status', 'name'], '')} - ${loanActionMap[loan.action]}` :
-    `${_.get(loan, ['item', 'status', 'name'], '')}`;
 }
 
 export function eachPromise(arr, fn) {

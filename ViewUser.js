@@ -11,6 +11,7 @@ import Layer from '@folio/stripes-components/lib/Layer';
 import IfPermission from '@folio/stripes-components/lib/IfPermission';
 import IfInterface from '@folio/stripes-components/lib/IfInterface';
 import { ExpandAllButton } from '@folio/stripes-components/lib/Accordion';
+import IconButton from '@folio/stripes-components/lib/IconButton';
 
 import UserForm from './UserForm';
 import LoansHistory from './LoansHistory';
@@ -305,9 +306,20 @@ class ViewUser extends React.Component {
     const proxies = this.props.getProxies();
 
     const detailMenu = (<PaneMenu>
-      <PaneMenuIcon id="clickable-show-notes" style={{ visibility: !user ? 'hidden' : 'visible' }} onClick={this.props.notesToggle} title="Show Notes" icon="comment" />
+      <IconButton
+        icon="comment"
+        id="clickable-show-notes"
+        style={{ visibility: !user ? 'hidden' : 'visible' }}
+        onClick={this.props.notesToggle} title="Show Notes"
+      />
       <IfPermission perm="users.item.put">
-        <PaneMenuIcon id="clickable-edituser" style={{ visibility: !user ? 'hidden' : 'visible' }} onClick={this.props.onEdit} title="Edit User" icon="edit" />
+        <IconButton
+          icon="edit"
+          id="clickable-edituser"
+          style={{ visibility: !user ? 'hidden' : 'visible' }}
+          onClick={this.props.onEdit}
+          title="Edit User"
+        />
       </IfPermission>
     </PaneMenu>);
 
