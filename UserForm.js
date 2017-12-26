@@ -114,6 +114,7 @@ class UserForm extends React.Component {
           title={label}
           disabled={pristine || submitting}
           onClick={handleSubmit}
+          buttonStyle="primary paneHeaderNewButton"
         >
           {label}
         </Button>
